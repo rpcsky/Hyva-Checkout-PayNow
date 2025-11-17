@@ -13,17 +13,10 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\TemplateEngine\Php;
 use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Blik;
 ?>
+<div x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik">
 <div
     class="payment-method"
-    x-data="{
-        checkCharCount(event) {
-            const enteredCharCount = event.target.value.length;
-
-            if (enteredCharCount === 6) {
-                event.target.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-        },
-    }"
+    x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik"
 >
     <div class="paynow-payment-option-blik">
         <label for="paynow_blik_code">
@@ -52,7 +45,7 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Blik;
         <?php foreach ($magewire->getGdprNotices() as $notice): ?>
             <div
                 class="paynow-data-processing-info"
-                x-data="{ expanded: false }"
+                x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik1"
             >
                 <span>
                     <?= $notice['title'] ?>
@@ -60,7 +53,7 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Blik;
                 <?php if ($notice['content']): ?>
                     <a
                         class="expand"
-                        @click="expanded = ! expanded"
+                        @click="snowdogHyvaCheckoutPayNowComponentPaymentMethodBlikClick1"
                     >
                         <?= __('Read more') ?>
                     </a>
@@ -77,3 +70,23 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Blik;
         <?php endforeach ?>
     </div>
 </div>
+</div>
+<script>
+<?php /** Generated with hyva-csp-helper.php */ ?>
+function snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik1() {
+    return Object.assign(
+        Object.assign({ expanded: false }, snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik())
+    )
+}
+window.addEventListener('alpine:init', () => Alpine.data('snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik1', snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik1), {once: true});
+function snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik() {
+    return Object.assign(
+        {}
+        ,{
+            ['snowdogHyvaCheckoutPayNowComponentPaymentMethodBlikClick1'](event) {return this.expanded = ! this.expanded},
+        }
+    )
+}
+window.addEventListener('alpine:init', () => Alpine.data('snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik', snowdogHyvaCheckoutPayNowComponentPaymentMethodBlik), {once: true});
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

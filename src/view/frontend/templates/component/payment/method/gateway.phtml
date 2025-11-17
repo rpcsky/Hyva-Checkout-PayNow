@@ -31,10 +31,10 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Gateway;
 
     <div class="paynow-data-processing-info">
         <?php foreach ($magewire->getGdprNotices() as $notice): ?>
-            <div class="paynow-data-processing-info" x-data="{ expanded: false }">
+            <div class="paynow-data-processing-info" x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodGateway">
                 <span><?= $notice['title'] ?></span>
                 <?php if ($notice['content']): ?>
-                    <a class="expand" @click="expanded = ! expanded"><?= __('Read more') ?></a>
+                    <a class="expand" @click="snowdogHyvaCheckoutPayNowComponentPaymentMethodGatewayClick4"><?= __('Read more') ?></a>
                     <div x-show="expanded" class="paynow-data-processing-info-more">
                         <p><?= $notice['content'] ?></p>
                     </div>
@@ -42,4 +42,16 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Gateway;
             </div>
         <?php endforeach ?>
     </div>
-</div>
+</div><script>
+<?php /** Generated with hyva-csp-helper.php */ ?>
+function snowdogHyvaCheckoutPayNowComponentPaymentMethodGateway() {
+    return Object.assign(
+        { expanded: false }
+        ,{
+            ['snowdogHyvaCheckoutPayNowComponentPaymentMethodGatewayClick4'](event) {return this.expanded = ! this.expanded},
+        }
+    )
+}
+window.addEventListener('alpine:init', () => Alpine.data('snowdogHyvaCheckoutPayNowComponentPaymentMethodGateway', snowdogHyvaCheckoutPayNowComponentPaymentMethodGateway), {once: true});
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

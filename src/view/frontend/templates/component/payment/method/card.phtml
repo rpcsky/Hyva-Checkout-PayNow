@@ -33,7 +33,7 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Card;
                                 <span><?= $instrument['expirationDate'] ?></span></p>
                         </div>
                         <div class="paynow-payment-card-menu">
-                            <button class="paynow-payment-card-menu-button" type="button" @click="removeCard('<?= $instrument['token'] ?>', '<?= $instrument['name'] ?>')"><?= __(
+                            <button class="paynow-payment-card-menu-button" type="button" @click="snowdogHyvaCheckoutPayNowComponentPaymentMethodCardClick2" data-hyvacsp1="<?= $instrument['token'] ?>" data-hyvacsp2="<?= $instrument['name'] ?>"><?= __(
                                     'remove'
                                 ) ?></button>
                         </div>
@@ -61,10 +61,10 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Card;
 
     <div class="paynow-data-processing-info">
         <?php foreach ($magewire->getGdprNotices() as $notice): ?>
-            <div class="paynow-data-processing-info" x-data="{ expanded: false }">
+            <div class="paynow-data-processing-info" x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodCard">
                 <span><?= $notice['title'] ?></span>
                 <?php if ($notice['content']): ?>
-                    <a class="expand" @click="expanded = ! expanded"><?= __('Read more') ?></a>
+                    <a class="expand" @click="snowdogHyvaCheckoutPayNowComponentPaymentMethodCardClick3"><?= __('Read more') ?></a>
                     <div x-show="expanded" class="paynow-data-processing-info-more">
                         <p><?= $notice['content'] ?></p>
                     </div>
@@ -101,4 +101,18 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\Card;
                 Magewire.find('checkout.payment.method.paynow_card_gateway').set('fingerprint', result.visitorId);
             })
     </script>
-</div>
+<?php $hyvaCsp->registerInlineScript() ?>
+</div><script>
+<?php /** Generated with hyva-csp-helper.php */ ?>
+function snowdogHyvaCheckoutPayNowComponentPaymentMethodCard() {
+    return Object.assign(
+        { expanded: false }
+        ,{
+            ['snowdogHyvaCheckoutPayNowComponentPaymentMethodCardClick2'](event) {return this.removeCard(`${this.$el.dataset.hyvacsp1}`, `${this.$el.dataset.hyvacsp2}`)},
+            ['snowdogHyvaCheckoutPayNowComponentPaymentMethodCardClick3'](event) {return this.expanded = ! this.expanded},
+        }
+    )
+}
+window.addEventListener('alpine:init', () => Alpine.data('snowdogHyvaCheckoutPayNowComponentPaymentMethodCard', snowdogHyvaCheckoutPayNowComponentPaymentMethodCard), {once: true});
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

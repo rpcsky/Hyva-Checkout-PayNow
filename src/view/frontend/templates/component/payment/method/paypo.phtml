@@ -19,7 +19,7 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\PayPo;
         <?php foreach ($magewire->getGdprNotices() as $notice): ?>
             <div
                 class="paynow-data-processing-info"
-                x-data="{ expanded: false }"
+                x-data="snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypo"
             >
                 <span>
                     <?= $notice['title'] ?>
@@ -27,7 +27,7 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\PayPo;
                 <?php if ($notice['content']): ?>
                     <a
                         class="expand"
-                        @click="expanded = ! expanded"
+                        @click="snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypoClick5"
                     >
                         <?= __('Read more') ?>
                     </a>
@@ -44,3 +44,16 @@ use Snowdog\Hyva\Checkout\PayNow\Payment\Method\PayPo;
         <?php endforeach ?>
     </div>
 </div>
+<script>
+<?php /** Generated with hyva-csp-helper.php */ ?>
+function snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypo() {
+    return Object.assign(
+        { expanded: false }
+        ,{
+            ['snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypoClick5'](event) {return this.expanded = ! this.expanded},
+        }
+    )
+}
+window.addEventListener('alpine:init', () => Alpine.data('snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypo', snowdogHyvaCheckoutPayNowComponentPaymentMethodPaypo), {once: true});
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>
